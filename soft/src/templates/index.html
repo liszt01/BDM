@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Video Streaming Demonstration</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			font-family: Arial, sans-serif;
+		}
+
+		#image-container {
+			width: 100%;
+			height: 70vh;
+			background-color: #f0f0f0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#controller-container {
+			width: 100%;
+			height: 30vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.button-row {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.button {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background-color: #3498db;
+			color: #fff;
+			margin: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 14px;
+			cursor: pointer;
+		}
+
+		#launch-button {
+			background-color: #e74c3c;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="image-container">
+		<img src="{{ url_for('video_feed') }}" style="max-height: 70vh; max-width: 100%;">
+	</div>
+	<div id="controller-container">
+		<div class="button-row">
+			<div class="button" onclick="alert('Up')">↑</div>
+		</div>
+
+		<div class="button-row">
+			<div class="button" onclick="alert('Left')">←</div>
+			<div class="button" id="launch-button" onclick="alert('Launch')">Launch</div>
+			<div class="button" onclick="alert('Right')">→</div>
+		</div>
+
+		<div class="button-row">
+			<div class="button" onclick="alert('Down')">↓</div>
+		</div>
+	</div>
+</body>
+
+</html>

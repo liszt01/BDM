@@ -1,0 +1,6 @@
+# venv
+.bdm-env/
+
+# python cache
+*.pyc
+__pycache__/
