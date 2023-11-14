@@ -2,9 +2,11 @@
 
 ### 1. Create and Activate a Virtual Environment
 
+
 ```bash
 # Create a virtual environment
-python -m venv .bdm-env
+# Python 3.10 is recommended due to [pytorch support](https://stackoverflow.com/questions/75417119/how-to-find-what-is-the-latest-version-of-python-that-pytorch)
+python3.10 -m venv .bdm-env
 
 # Activate the virtual environment
 source .bdm-env/bin/activate

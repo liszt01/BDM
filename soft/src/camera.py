@@ -1,4 +1,7 @@
 import cv2
+from ultralytics import YOLO
+
+model = YOLO('../model/yolov8n.pt')
 
 class VideoCamera(object):
     def __init__(self):
@@ -11,7 +14,9 @@ class VideoCamera(object):
 
     def get_frame(self):
         success, image = self.video.read()
-        ret, jpeg = cv2.imencode('.jpg', image)
+        # 物体検出した結果
+        results = model(image)
+        ret, jpeg = cv2.imencode('.jpg', results[0].plot())
         return jpeg.tobytes()
 
         # read()は、二つの値を返すので、success, imageの2つ変数で受けています。
