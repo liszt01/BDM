@@ -12,6 +12,10 @@ python3.10 -m venv .bdm-env
 source .bdm-env/bin/activate
 ```
 
+#### Download YOLO Model
+
+Download the yolov8n.pt file from [the official Ultralytics YOLOv8 documentation](https://docs.ultralytics.com/models/yolov8/#supported-modes) and place it in the `model/` directory of this repository.
+
 ### 2. Install Dependencies
 
 ```bash

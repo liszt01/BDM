@@ -6,4 +6,4 @@
 __pycache__/
 
 # YOLO model
-model/
+*.pt
