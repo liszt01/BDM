@@ -59,6 +59,15 @@ h264はビットレートが安定するらしい
 - [Raspberry Piへのコンピュータビジョンの実装](https://www.koi.mashykom.com/Raspi_opencv.html)
 - [FlaskとOpenCVを使ってWEBカメラで撮影した画像をストリーミングする](https://qiita.com/sti320a/items/3cdafb737d2c16fbaa51)
 
+### YOLOv8 物体検出
+
+参考文献
+- [WebカメラでYOLOv8を動かす](https://zenn.dev/straydog/articles/4965a62e6fbb97)
+- [YOLOv8をpython openCVでちゃちゃっと物体検出してみる](https://qiita.com/napspans/items/9ddc80e4625314c5607d)
+- [カメラに映った画像をリアルタイムに物体検知する](https://www.tetsumag.com/2023/03/11/317/)
+
+
+
 ### ChatGPT に一応聞いてみた
  
 ラズベリーパイで撮影した映像をパソコンに送信し、OpenCVの処理を施したり、ウェブアプリに表示させるためには、いくつかのステップがあります。以下に、一般的な手順を示します。
