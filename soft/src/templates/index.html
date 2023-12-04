@@ -68,7 +68,7 @@
 
 		<div class="button-row">
 			<div class="button" onclick="alert('Left')">←</div>
-			<div class="button" id="launch-button" onclick="alert('Launch')">Launch</div>
+			<button class="button" id="launch-button" onclick="alert('Launch')">Launch</button>
 			<div class="button" onclick="alert('Right')">→</div>
 		</div>
 
@@ -76,6 +76,12 @@
 			<div class="button" onclick="alert('Down')">↓</div>
 		</div>
 	</div>
+	<script>
+		// ボタンがクリックされたときにサーバーサイドのエンドポイントにデータを送信
+		document.getElementById('launch-button').addEventListener('click', function () {
+			fetch('/send_data');
+		});
+	</script>
 </body>
 
 </html>
