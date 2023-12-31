@@ -10,5 +10,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     conn, addr = s.accept()
     with conn:
         print('Connected by', addr)
-        data = conn.recv(1024)
-        print('Received data:', data.decode())
+        while True:
+            data = conn.recv(1024)
+            if not data:
+                print('Connection closed by', addr)
+                break
+            print('Received data:', data.decode())

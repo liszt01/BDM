@@ -7,8 +7,8 @@ model = YOLO('../model/yolov8n.pt')
 
 class VideoCamera(object):
     def __init__(self):
-        # self.video = cv2.VideoCapture(0)
-        self.video = cv2.VideoCapture(stream_url)
+        self.video = cv2.VideoCapture(0)
+        # self.video = cv2.VideoCapture(stream_url)
 
         # Opencvのカメラをセットします。(0)はノートパソコンならば組み込まれているカメラ
 

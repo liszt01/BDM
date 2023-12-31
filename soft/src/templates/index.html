@@ -63,25 +63,30 @@
 	</div>
 	<div id="controller-container">
 		<div class="button-row">
-			<div class="button" onclick="alert('Up')">↑</div>
+			<form method="GET" action="/up">
+				<button type="submit" class="button">↑</button>
+			</form>
 		</div>
 
 		<div class="button-row">
-			<div class="button" onclick="alert('Left')">←</div>
-			<button class="button" id="launch-button" onclick="alert('Launch')">Launch</button>
-			<div class="button" onclick="alert('Right')">→</div>
+			<form method="GET" action="/left">
+				<button type="submit" class="button">←</button>
+			</form>
+			<!--button class="button" id="launch-button" onclick="alert('Launch')">Launch</button-->
+			<form method="GET" action="/launch">
+				<button type="submit" class="button">Launch</button>
+			</form>
+			<form method="GET" action="/right">
+				<button type="submit" class="button">→</button>
+			</form>
 		</div>
 
 		<div class="button-row">
-			<div class="button" onclick="alert('Down')">↓</div>
+			<form method="GET" action="/down">
+				<button type="submit" class="button">↓</button>
+			</form>
 		</div>
 	</div>
-	<script>
-		// ボタンがクリックされたときにサーバーサイドのエンドポイントにデータを送信
-		document.getElementById('launch-button').addEventListener('click', function () {
-			fetch('/send_data');
-		});
-	</script>
 </body>
 
 </html>
