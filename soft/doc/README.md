@@ -44,14 +44,22 @@ To access the laptop camera using OpenCV, ensure that the camera access is grant
 
 ## Raspberry Pi 側の設定
 
-### USBカメラの設定
-
 ### mjpg-streamer のインストール
 
 ```
+cd ~
 sudo apt install git cmake libjpeg9-dev
 git clone https://github.com/jacksonliam/mjpg-streamer.git
 cd mjpg-streamer/mjpg-streamer-experimental
 make
 sudo make install
 ```
+
+```
+cd ~/BDM/soft/src
+./start_stream.sh
+```
+
+参考
+
+- [mjpeg-streamerのインストール&設定](https://raspi-katsuyou.com/index.php/2020/06/30/11/10/44/644/)
