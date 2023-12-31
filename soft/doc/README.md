@@ -6,6 +6,10 @@
 ```bash
 # Create a virtual environment
 # Python 3.10 is recommended due to [pytorch support](https://stackoverflow.com/questions/75417119/how-to-find-what-is-the-latest-version-of-python-that-pytorch)
+# To install python3.10 in Ubuntu, run following command:
+# sudo add-apt-repository ppa:deadsnakes/ppa
+# sudo apt install python3.10
+# sudo apt install python3.10-venv
 python3.10 -m venv .bdm-env
 
 # Activate the virtual environment
@@ -37,3 +41,17 @@ To access the laptop camera using OpenCV, ensure that the camera access is grant
 2. Navigate to **Privacy & Security**.
 4. Choose **Camera**.
 5. Toggle the switch next to the development environment (e.g., VSCode) to grant camera access.
+
+## Raspberry Pi 側の設定
+
+### USBカメラの設定
+
+### mjpg-streamer のインストール
+
+```
+sudo apt install git cmake libjpeg9-dev
+git clone https://github.com/jacksonliam/mjpg-streamer.git
+cd mjpg-streamer/mjpg-streamer-experimental
+make
+sudo make install
+```

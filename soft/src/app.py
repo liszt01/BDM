@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Response
-from camera import VideoCamera
+from image_processing import VideoCamera
 import socket
 
 app = Flask(__name__)
@@ -9,7 +9,7 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # ソケットを接続
 host = '127.0.0.1'
 port = 12345
-client_socket.connect((host, port))
+# client_socket.connect((host, port))
 
 @app.route('/')
 def index():
@@ -34,14 +34,14 @@ def video_feed():
 # launchボタンを押したときに
 # localhost:8000 says send_data
 # って表示されるのどうなんだろう。launchならまだしも、上下左右の移動でいちいち出てきたらうざったいな
-@app.route('/send_data')
-def send_data():
-    if client_socket:
-        data_to_send = "3 2 1 ... FIRE!!"
-        client_socket.sendall(data_to_send.encode())
-        return 'Data sent successfully'
-    else:
-        return 'Error: Socket not connected'
+#@app.route('/send_data')
+#def send_data():
+#    if client_socket:
+#        data_to_send = "3 2 1 ... FIRE!!"
+#        client_socket.sendall(data_to_send.encode())
+#        return 'Data sent successfully'
+#    else:
+#        return 'Error: Socket not connected'
 
 if __name__ == '__main__':
     app.run()
