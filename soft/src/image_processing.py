@@ -1,14 +1,14 @@
 import cv2
 from ultralytics import YOLO
 
-raspberrypi_ip = '192.168.0.17'
+raspberrypi_ip = '192.168.123.249'
 stream_url = f'http://{raspberrypi_ip}:8080/?action=stream'
 model = YOLO('../model/yolov8n.pt')
 
 class VideoCamera(object):
     def __init__(self):
-        self.video = cv2.VideoCapture(0)
-        # self.video = cv2.VideoCapture(stream_url)
+        # self.video = cv2.VideoCapture(0)
+        self.video = cv2.VideoCapture(stream_url)
 
         # Opencvのカメラをセットします。(0)はノートパソコンならば組み込まれているカメラ
 
