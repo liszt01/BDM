@@ -51,6 +51,66 @@ OpenCVでストリーム配信をキャプチャする。
 - [カメラに映った画像をリアルタイムに物体検知する](https://www.tetsumag.com/2023/03/11/317/)
 
 
+### raspberry pi に Python3.10.13 インストール
+
+ビルド失敗してた
+
+```
+$ pyenv install 3.10.13
+
+Downloading Python-3.10.13.tar.xz...
+-> https://www.python.org/ftp/python/3.10.13/Python-3.10.13.tar.xz
+Installing Python-3.10.13...
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/fuma/.pyenv/versions/3.10.13/lib/python3.10/bz2.py", line 17, in <module>
+    from _bz2 import BZ2Compressor, BZ2Decompressor
+ModuleNotFoundError: No module named '_bz2'
+WARNING: The Python bz2 extension was not compiled. Missing the bzip2 lib?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/fuma/.pyenv/versions/3.10.13/lib/python3.10/curses/__init__.py", line 13, in <module>
+    from _curses import *
+ModuleNotFoundError: No module named '_curses'
+WARNING: The Python curses extension was not compiled. Missing the ncurses lib?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/fuma/.pyenv/versions/3.10.13/lib/python3.10/ctypes/__init__.py", line 8, in <module>
+    from _ctypes import Union, Structure, Array
+ModuleNotFoundError: No module named '_ctypes'
+WARNING: The Python ctypes extension was not compiled. Missing the libffi lib?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'readline'
+WARNING: The Python readline extension was not compiled. Missing the GNU readline lib?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/fuma/.pyenv/versions/3.10.13/lib/python3.10/ssl.py", line 99, in <module>
+    import _ssl             # if we can't import it, let the error propagate
+ModuleNotFoundError: No module named '_ssl'
+ERROR: The Python ssl extension was not compiled. Missing the OpenSSL lib?
+
+Please consult to the Wiki page to fix the problem.
+https://github.com/pyenv/pyenv/wiki/Common-build-problems
+
+
+BUILD FAILED (Raspbian 11 using python-build 20180424)
+
+Inspect or clean up the working tree at /tmp/python-build.20240102164754.3995
+Results logged to /tmp/python-build.20240102164754.3995.log
+
+Last 10 log lines:
+        LD_LIBRARY_PATH=/tmp/python-build.20240102164754.3995/Python-3.10.13 ./python -E -m ensurepip \
+                $ensurepip --root=/ ; \
+fi
+Looking in links: /tmp/tmpqk0nlfnv
+Processing /tmp/tmpqk0nlfnv/setuptools-65.5.0-py3-none-any.whl
+Processing /tmp/tmpqk0nlfnv/pip-23.0.1-py3-none-any.whl
+Installing collected packages: setuptools, pip
+  WARNING: The scripts pip3 and pip3.10 are installed in '/home/fuma/.pyenv/versions/3.10.13/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed pip-23.0.1 setuptools-65.5.0
+```
 
 ### ChatGPT に一応聞いてみた
  
