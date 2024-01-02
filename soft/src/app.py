@@ -7,7 +7,7 @@ app = Flask(__name__)
 # ソケットの作成
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # サーバーと接続
-host = '127.0.0.1'
+host = '192.168.123.249'
 port = 12345
 client_socket.connect((host, port))
 
