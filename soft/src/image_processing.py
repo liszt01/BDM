@@ -18,7 +18,7 @@ class VideoCamera(object):
     def get_frame(self):
         success, image = self.video.read()
         # 物体検出した結果
-        results = model(image)
+        results = model(image, conf=0.6)
         ret, jpeg = cv2.imencode('.jpg', results[0].plot())
         return jpeg.tobytes()
 
