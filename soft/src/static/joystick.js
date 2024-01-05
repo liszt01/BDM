@@ -1,4 +1,3 @@
-
 class JoystickController {
     // stickID: ID of HTML element (representing joystick) that will be dragged
     // maxDistance: maximum amount joystick can move in any direction
@@ -100,15 +99,31 @@ class JoystickController {
     }
 }
 
-let joystick1 = new JoystickController("stick1", 64, 8);
+let joystick = new JoystickController("stick1", 64, 8);
 
 function update() {
-    document.getElementById("status1").innerText = "Joystick 1: " + JSON.stringify(joystick1.value);
+    document.getElementById("status1").innerText = "Joystick 1: " + JSON.stringify(joystick.value);
 }
 
 function loop() {
     requestAnimationFrame(loop);
-    update();
+    // update();
+    if (joystick.value.x !== 0 || joystick.value.y !== 0) { // !== {x: 0, y: 0}ってかけないかな
+        fetch('/api/joystick', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(joystick.value),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response from server:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 }
 
 loop();

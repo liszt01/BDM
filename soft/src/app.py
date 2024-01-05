@@ -1,48 +1,39 @@
-from flask import Flask, render_template, Response, redirect, url_for
-import socket
+from flask import Flask, render_template, Response, redirect, url_for, request, jsonify
+from config import DEBUG_FLASK
 from image_processing import VideoCamera, frame_generator
-from config import PI_IP, PI_PORT_SOCKET
+from motor_control import move_motor_relative, set_absolute_angle
 
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', debug=DEBUG_FLASK)
 
 @app.route('/video_feed')
 def video_feed():
     return Response(frame_generator(VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-def send_data(msg):
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect((PI_IP, PI_PORT_SOCKET))
-    client.sendall(msg.encode())
+
+@app.route('/api/joystick', methods=['POST'])
+def receive_joystick():
+    joystick_value = request.json    
+    move_motor_relative(joystick_value['x'], joystick_value['y'])
+    # 応答としてJSONデータを返す（一応）
+    response_data = {'message': 'Joystick data received successfully!'}
+    return jsonify(response_data)
+
+@app.route('/api/form', methods=['POST'])
+def receive_form():
+    form_value = request.json    
+    set_absolute_angle(form_value['x'], form_value['y'])
+    
+    response_data = {'message': 'Form data received successfully!'}
+    return jsonify(response_data)
 
 @app.route('/launch')
 def send_launch():
-    send_data("LAUNCH!!")
-    return redirect(url_for('index'))
-
-@app.route('/up')
-def send_up():
-    send_data("UP!!")
-    return redirect(url_for('index'))
-
-@app.route('/left')
-def send_left():
-    send_data("LEFT!!")
-    return redirect(url_for('index'))
-
-@app.route('/right')
-def send_right():
-    send_data("RIGHT!!")
-    return redirect(url_for('index'))
-
-@app.route('/down')
-def send_down():
-    send_data("DOWN!!")
     return redirect(url_for('index'))
 
 if __name__ == '__main__':

@@ -1,9 +1,11 @@
 import socket
 import signal
 import sys
+import threading
 from config import PI_IP, PI_PORT_SOCKET
 
 BUFSIZE = 1024
+MAX_CONN = 10
 
 # シグナルハンドラ関数
 def signal_handler(sig, frame):
@@ -40,16 +42,16 @@ signal.signal(signal.SIGINT, signal_handler)
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((PI_IP, PI_PORT_SOCKET))
-server.listen()
+server.listen(MAX_CONN)
 print('[*] listen {}:{}'.format(PI_IP, PI_PORT_SOCKET))
 
-while True:
-    client, addr = server.accept()
-    with client:
-        print('[*] connected from: {}:{}'.format(addr[0], addr[1]))
-        request = client.recv(BUFSIZE)
-        print('[*] recv: {}'.format(request.decode()))
+def handle_client(client_socket):
+    request = client_socket.recv(BUFSIZE)
+    print('[*] recv: {}'.format(request.decode()))
+    client_socket.close()
 
-        # if request.decode() == "LAUNCH!!":
-            # test()
-            # set_motor(60)
+while True:
+    client,addr = server.accept()
+    print('[*] connected from: {}:{}'.format(addr[0], addr[1]))
+    client_handler = threading.Thread(target=handle_client,args=(client,))
+    client_handler.start()

@@ -80,8 +80,19 @@
 	<!-- <div class=" container"> -->
 
 	<div class="container-bottom-left">
-		<!-- <div id="status1" style="color: blue;">Joystick 1</div> -->
+		{% if debug %}
+		<form id="numberForm">
+			<label for="number1">Angle X:</label>
+			<input type="number" id="number1" name="number1" required>
 
+			<label for="number2">Angle Y:</label>
+			<input type="number" id="number2" name="number2" required>
+
+			<button type="button" onclick="submitNumbers()">Set</button>
+		</form>
+		{% endif %}
+
+		<!-- <div id="status1" style="color: blue;">Joystick 1</div> -->
 		<div style="width: 128px; position: absolute; left: 50%;">
 			<img src="{{ url_for('static', filename='joystick-base.png') }}" />
 			<div id="stick1" style="position: absolute; left: 32px; top: 32px;">
@@ -116,6 +127,7 @@
 		</div>
 	</div> -->
 	<script src="{{ url_for('static', filename='joystick.js') }}"></script>
+	<script src="{{ url_for('static', filename='get_absolute_angle.js') }}"></script>
 </body>
 
 </html>
