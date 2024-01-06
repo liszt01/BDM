@@ -2,7 +2,7 @@ from flask import Flask, render_template, Response, redirect, url_for, request, 
 from config import DEBUG_FLASK
 from image_processing import VideoCamera, frame_generator
 from motor_control import move_motor_relative, set_absolute_angle
-from launch_control import launch_rockets
+from launch_control import launch_rockets, reload
 
 
 app = Flask(__name__)
@@ -36,6 +36,11 @@ def receive_form():
 @app.route('/api/launch', methods=['POST'])
 def receive_launch():
     response_data = launch_rockets()
+    return jsonify(response_data)
+
+@app.route('/api/reload', methods=['POST'])
+def receive_reload():
+    response_data = reload()
     return jsonify(response_data)
 
 if __name__ == '__main__':
