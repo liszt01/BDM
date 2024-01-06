@@ -16,6 +16,11 @@
 			/* position: relative; */
 		}
 
+		img {
+			width: 100%;
+			height: auto;
+		}
+
 		/* .container {
 			position: relative;
 			display: inline-block;
@@ -23,8 +28,35 @@
 
 		.container-bottom-left {
 			position: absolute;
+			display: flex;
 			width: 50%;
 			top: 80%;
+		}
+
+		.container-bottom-right {
+			position: absolute;
+			display: flex;
+			width: 50%;
+			top: 80%;
+			right: 0;
+		}
+
+		.rocket {
+			width: 128px;
+			height: auto;
+		}
+
+		.rocket.selected {
+			filter: drop-shadow(0 0 10px yellow)
+		}
+
+		#launchButton {
+			width: 128px;
+			height: auto;
+			background-image: url('../static/war_bakuha_switch_off.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 
 		/* .button-row {
@@ -57,21 +89,6 @@
 		/* #launch-button {
 			background-color: #e74c3c;
 		} */
-
-		.joystick-container {
-			position: relative;
-			width: 200px;
-			height: 200px;
-		}
-
-		.joystick {
-			position: absolute;
-			width: 50px;
-			height: 50px;
-			background-color: #3498db;
-			border-radius: 50%;
-			cursor: pointer;
-		}
 	</style>
 </head>
 
@@ -80,25 +97,46 @@
 	<!-- <div class=" container"> -->
 
 	<div class="container-bottom-left">
-		{% if debug %}
-		<form id="numberForm">
-			<label for="number1">Angle X:</label>
-			<input type="number" id="number1" name="number1" required>
-
-			<label for="number2">Angle Y:</label>
-			<input type="number" id="number2" name="number2" required>
-
-			<button type="button" onclick="submitNumbers()">Set</button>
-		</form>
-		{% endif %}
-
 		<!-- <div id="status1" style="color: blue;">Joystick 1</div> -->
-		<div style="width: 128px; position: absolute; left: 50%;">
+		<div style="width: 128px;">
 			<img src="{{ url_for('static', filename='joystick-base.png') }}" />
 			<div id="stick1" style="position: absolute; left: 32px; top: 32px;">
 				<img src="{{ url_for('static', filename='joystick-blue.png') }}" />
 			</div>
 		</div>
+
+		{% if debug %}
+		<form id="numberForm">
+			<div style="display: table-row;">
+				<label for="number1">Angle X:</label>
+				<input type="number" id="number1" name="number1" required>
+			</div>
+			<div style="display: table-row;">
+				<label for="number2">Angle Y:</label>
+				<input type="number" id="number2" name="number2" required>
+
+			</div>
+			<div style="display: table-row;">
+				<button type="button" onclick="submitNumbers()">Set</button>
+			</div>
+		</form>
+		{% endif %}
+	</div>
+
+	<div class="container-bottom-right">
+		<div class="rocket" id="rocket1">
+			<img src="{{ url_for('static', filename='hanabi_rocket.png') }}">
+		</div>
+		<div class="rocket" id="rocket2">
+			<img src="{{ url_for('static', filename='hanabi_rocket.png') }}">
+		</div>
+		<div class="rocket" id="rocket3">
+			<img src="{{ url_for('static', filename='hanabi_rocket.png') }}">
+		</div>
+		<div class="rocket" id="rocket4">
+			<img src="{{ url_for('static', filename='hanabi_rocket.png') }}">
+		</div>
+		<div id="launchButton"></div>
 	</div>
 	<!-- <form method="GET" action="/launch">
 		<button type="submit" class="button">Launch</button>
@@ -127,7 +165,10 @@
 		</div>
 	</div> -->
 	<script src="{{ url_for('static', filename='joystick.js') }}"></script>
-	<script src="{{ url_for('static', filename='get_absolute_angle.js') }}"></script>
+	{% if debug %}
+	<script src="{{ url_for('static', filename='form.js') }}"></script>
+	{% endif %}
+	<script src="{{ url_for('static', filename='launcher.js') }}"></script>
 </body>
 
 </html>

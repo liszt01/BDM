@@ -32,9 +32,12 @@ def receive_form():
     response_data = {'message': 'Form data received successfully!'}
     return jsonify(response_data)
 
-@app.route('/launch')
-def send_launch():
-    return redirect(url_for('index'))
+@app.route('/api/launch', methods=['POST'])
+def receive_launch():
+    launcher_value = request.json    
+    
+    response_data = {'message': 'Form data received successfully!'}
+    return jsonify(response_data)
 
 if __name__ == '__main__':
     app.run()
