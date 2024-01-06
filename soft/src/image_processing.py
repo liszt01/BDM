@@ -1,13 +1,13 @@
 import cv2
 from ultralytics import YOLO
-from config import PI_IP, PI_PORT_STREAM, NO_PI
+from config import PI_IP, PI_PORT_STREAM, NO_CAMERA
 
 stream_url = f'http://{PI_IP}:{PI_PORT_STREAM}/?action=stream'
 model = YOLO('../model/yolov8n.pt')
 
 class VideoCamera(object):
     def __init__(self):
-        if NO_PI: self.video = cv2.VideoCapture(0)
+        if NO_CAMERA: self.video = cv2.VideoCapture(0)
         else: self.video = cv2.VideoCapture(stream_url)
 
         # Opencvのカメラをセットします。(0)はノートパソコンならば組み込まれているカメラ

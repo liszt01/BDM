@@ -1,14 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const rockets = document.querySelectorAll('.rocket');
     const launchButton = document.getElementById('launchButton');
 
-    let selectedRockets = [];
-
-    rockets.forEach((rocket) => {
-        rocket.addEventListener('click', () => {
-            toggleRocketSelection(rocket);
-        });
-    });
+    let totalAmmo = 8;
+    let remainingAmmo = 8;
 
     launchButton.addEventListener('mousedown', () => {
         launchSelectedRockets();
@@ -23,33 +17,27 @@ document.addEventListener('DOMContentLoaded', function () {
         launchButton.style.backgroundImage = "url('../static/war_bakuha_switch_off.png')";
     });
 
-    function toggleRocketSelection(rocket) {
-        if (selectedRockets.includes(rocket)) {
-            selectedRockets = selectedRockets.filter(selectedRocket => selectedRocket !== rocket);
-        } else {
-            selectedRockets.push(rocket);
-        }
-        rocket.classList.toggle('selected');
-    }
-
     function launchSelectedRockets() {
-        if (selectedRockets.length > 0) {
+        if (remainingAmmo > 0) {
             launchButton.style.backgroundImage = "url('../static/war_bakuha_switch_on.png')";
             // alert(`Launching ${selectedRockets.length} rocket(s)!`);
-            // fetch('/api/launch', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(joystick.value),
-            // })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         console.log('Response from server:', data);
-            //     })
-            //     .catch(error => {
-            //         console.error('Error:', error);
-            //     });
+            // 選択されたロケットのIDだけを抽出してJSON形式のリストに変換
+            fetch('/api/launch', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from server:', data);
+                    totalAmmo = data['totalAmmo']
+                    remainingAmmo = data['remainingAmmo']
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            document.getElementById("ammo").innerText = JSON.stringify(remainingAmmo) + "/" + JSON.stringify(totalAmmo);
         } else {
             // alert('Please select at least one rocket to launch.');
         }

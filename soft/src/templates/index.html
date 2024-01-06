@@ -10,10 +10,9 @@
 			font-family: Arial, sans-serif;
 			margin: 0;
 			padding: 0;
-			overflow: hidden;
+			/* overflow: hidden; */
 			height: 100vh;
 			text-align: center;
-			/* position: relative; */
 		}
 
 		img {
@@ -35,19 +34,9 @@
 
 		.container-bottom-right {
 			position: absolute;
-			display: flex;
 			width: 50%;
 			top: 80%;
 			right: 0;
-		}
-
-		.rocket {
-			width: 128px;
-			height: auto;
-		}
-
-		.rocket.selected {
-			filter: drop-shadow(0 0 10px yellow)
 		}
 
 		#launchButton {
@@ -124,18 +113,7 @@
 	</div>
 
 	<div class="container-bottom-right">
-		<div class="rocket" id="rocket1">
-			<img src="{{ url_for('static', filename='hanabi_rocket.png') }}">
-		</div>
-		<div class="rocket" id="rocket2">
-			<img src="{{ url_for('static', filename='hanabi_rocket.png') }}">
-		</div>
-		<div class="rocket" id="rocket3">
-			<img src="{{ url_for('static', filename='hanabi_rocket.png') }}">
-		</div>
-		<div class="rocket" id="rocket4">
-			<img src="{{ url_for('static', filename='hanabi_rocket.png') }}">
-		</div>
+		<div id="ammo">8/8</div>
 		<div id="launchButton"></div>
 	</div>
 	<!-- <form method="GET" action="/launch">
