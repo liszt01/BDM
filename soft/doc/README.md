@@ -6,7 +6,7 @@
 ```bash
 # Create a virtual environment
 # Python 3.10 is recommended due to [pytorch support](https://stackoverflow.com/questions/75417119/how-to-find-what-is-the-latest-version-of-python-that-pytorch)
-# To install python3.10 in Ubuntu, run following command:
+# To install python3.10.13 in Ubuntu, run following command:
 # sudo add-apt-repository ppa:deadsnakes/ppa
 # sudo apt install python3.10
 # sudo apt install python3.10-venv
@@ -63,3 +63,16 @@ cd ~/BDM/soft/src
 参考
 
 - [mjpeg-streamerのインストール&設定](https://raspi-katsuyou.com/index.php/2020/06/30/11/10/44/644/)
+
+### root に pyenv をインストール
+
+```
+sudo su
+curl https://pyenv.run | bash
+echo '
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+' >> ~/.bashrc
+```
