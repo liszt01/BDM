@@ -85,7 +85,6 @@
 
 <body>
 	<img src="{{ url_for('video_feed') }}" style="width: auto; height: 100%;">
-	<!-- <div class=" container"> -->
 
 	<div class="container-bottom-left">
 		<!-- <div id="status1" style="color: blue;">Joystick 1</div> -->
@@ -118,32 +117,7 @@
 		<img id="launchButton" src="{{ url_for('static', filename='war_bakuha_switch_off.png') }}">
 		<div id="ammo">8/8</div>
 	</div>
-	<!-- <form method="GET" action="/launch">
-		<button type="submit" class="button">Launch</button>
-	</form> -->
-	<!-- </div> -->
-	<!-- <div id="controller-container">
-		<div class="button-row">
-			<form method="GET" action="/up">
-				<button type="submit" class="button">↑</button>
-			</form>
-		</div>
 
-		<div class="button-row">
-			<form method="GET" action="/left">
-				<button type="submit" class="button">←</button>
-			</form>
-			<form method="GET" action="/right">
-				<button type="submit" class="button">→</button>
-			</form>
-		</div>
-
-		<div class="button-row">
-			<form method="GET" action="/down">
-				<button type="submit" class="button">↓</button>
-			</form>
-		</div>
-	</div> -->
 	<script src="{{ url_for('static', filename='joystick.js') }}"></script>
 	{% if debug %}
 	<script src="{{ url_for('static', filename='form.js') }}"></script>

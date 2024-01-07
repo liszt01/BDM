@@ -1,8 +1,8 @@
 import cv2
 from ultralytics import YOLO
-from config import PI_IP, PI_PORT_STREAM, NO_CAMERA
+from config import PI_IP, NO_CAMERA
 
-stream_url = f'http://{PI_IP}:{PI_PORT_STREAM}/?action=stream'
+stream_url = f'http://{PI_IP}:8080/?action=stream'
 model = YOLO('../model/yolov8n.pt')
 
 class VideoCamera(object):

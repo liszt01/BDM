@@ -1,8 +1,8 @@
-import socket
 import json
+import socket
 from config import PI_IP, PI_PORT_SOCKET
 
-def send_signal(*args):
+def send_command(*args):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
         client.connect((PI_IP, PI_PORT_SOCKET))
         

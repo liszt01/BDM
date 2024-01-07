@@ -4,6 +4,8 @@
 
 
 ```bash
+git clone git@github.com:liszt01/BDM.git
+cd BDM/soft
 # Create a virtual environment
 # Python 3.10 is recommended due to [pytorch support](https://stackoverflow.com/questions/75417119/how-to-find-what-is-the-latest-version-of-python-that-pytorch)
 # To install python3.10.13 in Ubuntu, run following command:
@@ -29,13 +31,13 @@ python3 -m pip install -r requirements.txt
 ### 3. Launch the Application
 
 ```bash
-cd src
+cd web
 flask run -h 0.0.0.0 -p 8000
 ```
 
 To access the laptop camera using OpenCV, ensure that the camera access is granted to the development environment, such as VSCode, through the system settings' privacy & security.
 
-### Granting Camera Access on macOS
+#### Granting Camera Access on macOS
 
 1. Open **System Settings**.
 2. Navigate to **Privacy & Security**.
@@ -56,7 +58,7 @@ sudo make install
 ```
 
 ```
-cd ~/BDM/soft/src
+cd ~/BDM/soft/raspi
 ./start_stream.sh
 ```
 
