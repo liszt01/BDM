@@ -17,6 +17,23 @@ class JoystickController {
 
         let self = this;
 
+        function handleFetch() {
+            fetch('/api/joystick', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(joystick.value),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from server:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
         function handleDown(event) {
             self.active = true;
 
@@ -72,6 +89,7 @@ class JoystickController {
             const yPercent = parseFloat((yPosition2 / maxDistance).toFixed(4));
 
             self.value = { x: xPercent, y: yPercent };
+            handleFetch();
         }
 
         function handleUp(event) {
@@ -101,29 +119,13 @@ class JoystickController {
 
 let joystick = new JoystickController("stick1", 64, 8);
 
-function update() {
-    document.getElementById("status1").innerText = "Joystick 1: " + JSON.stringify(joystick.value);
-}
+// function update() {
+//     document.getElementById("status1").innerText = "Joystick 1: " + JSON.stringify(joystick.value);
+// }
 
-function loop() {
-    requestAnimationFrame(loop);
-    // update();
-    if (joystick.value.x !== 0 || joystick.value.y !== 0) { // !== {x: 0, y: 0}ってかけないかな
-        fetch('/api/joystick', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(joystick.value),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Response from server:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-}
+// function loop() {
+//     requestAnimationFrame(loop);
+//     update();
+// }
 
-loop();
+// loop();

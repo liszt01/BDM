@@ -1,62 +1,52 @@
-const launchButton = document.getElementById('launchButton');
+class LaunchButtonController {
+    constructor(buttonID) {
+        this.id = buttonID;
+        let launchButton = document.getElementById(buttonID);
 
-let totalAmmo;
-let remainingAmmo;
+        this.value = { totalAmmo: 0, remainingAmmo: 0 };
+        this.disabled = false;
 
-window.addEventListener('load', function () {
-    fetch('/api/reload', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Response from server:', data);
-            totalAmmo = data['totalAmmo']
-            remainingAmmo = data['remainingAmmo']
-            document.getElementById("ammo").innerText = `${remainingAmmo}/${totalAmmo}`;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});
+        let self = this;
 
-launchButton.addEventListener('mousedown', () => {
-    launchSelectedRockets();
-});
-launchButton.addEventListener('touchstart', () => {
-    launchSelectedRockets();
-});
-launchButton.addEventListener('mouseup', () => {
-    launchButton.src = '../static/war_bakuha_switch_off.png';
-});
-launchButton.addEventListener('touchend', () => {
-    launchButton.src = '../static/war_bakuha_switch_off.png';
-});
-
-function launchSelectedRockets() {
-    if (remainingAmmo > 0) {
-        launchButton.src = '../static/war_bakuha_switch_on.png';
-        // alert(`Launching ${selectedRockets.length} rocket(s)!`);
-        // 選択されたロケットのIDだけを抽出してJSON形式のリストに変換
-        fetch('/api/launch', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Response from server:', data);
-                totalAmmo = data['totalAmmo']
-                remainingAmmo = data['remainingAmmo']
-                document.getElementById("ammo").innerText = `${remainingAmmo}/${totalAmmo}`;
+        function handleFetch(action) {
+            fetch(`/api/${action}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    } else {
-        // alert('Please select at least one rocket to launch.');
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from server:', data);
+                    self.value.totalAmmo = data['totalAmmo'];
+                    self.value.remainingAmmo = data['remainingAmmo'];
+                    document.getElementById("ammo").innerText = `${self.value.remainingAmmo}/${self.value.totalAmmo}`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function handlePush() {
+            if (self.value.remainingAmmo <= 0 || self.disabled) return;
+
+            self.disabled = true;
+            launchButton.src = '../static/war_bakuha_switch_on.png';
+            handleFetch('launch');
+            setTimeout(function () {
+                self.disabled = false;
+            }, 5000);
+        }
+        function handleRelease() {
+            launchButton.src = '../static/war_bakuha_switch_off.png';
+        }
+
+        launchButton.addEventListener('mousedown', handlePush);
+        launchButton.addEventListener('touchstart', handlePush);
+        launchButton.addEventListener('mouseup', handleRelease);
+        launchButton.addEventListener('touchend', handleRelease);
+        window.addEventListener('load', handleFetch('reload'));
     }
 }
+
+let launchButton = new LaunchButtonController('launchButton');

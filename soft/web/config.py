@@ -7,7 +7,7 @@ NO_CAMERA = False
 # モーターの絶対角度指定など
 DEBUG_FLASK = True
 
-ANGLE_COEFF = 5 # もっとちいさくても良さそう
+ANGLE_COEFF = 1 # もっとちいさくても良さそう
 MIN_ANGLE_X = 30
 MAX_ANGLE_X = 120 # ~210
 MIN_ANGLE_Y = 30
