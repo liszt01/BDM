@@ -45,8 +45,6 @@ def signal_handler(sig, frame):
         pi.write(pin, 0)
     # GPIOピンを解放
     pi.stop()
-    # pigpiod を停止
-    subprocess.run(['sudo', 'pkill', 'pigpiod'])
     # ストリーム配信を停止
     process_stream.terminate()
     sys.exit(0)
@@ -56,8 +54,6 @@ signal.signal(signal.SIGINT, signal_handler)
 
 # ストリーム配信を開始
 process_stream = subprocess.Popen(['bash', STREAM_SCRIPT])
-# pigpiod を起動する
-subprocess.run(['sudo', 'pigpiod'])
 
 pi = pigpio.pi()
 pi.set_mode(mX, pigpio.OUTPUT)
