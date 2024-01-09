@@ -2,7 +2,14 @@
 
 - threading.Lock()のテスト
 
-- ストリームの遅延をなくす
+- ネットワーク接続の準備をしておく
+
+- (ストリームの遅延をなくす)
+
+  他のストリーム方法を使う?
+  RTSP
+  https://dev.classmethod.jp/articles/raspberry-pi-rtsp-server/
+  https://github.com/mpromonet/v4l2rtspserver
 
 - (UIを凝る)
 
