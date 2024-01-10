@@ -7,7 +7,7 @@ import sys
 import threading
 import time
 
-PI_IP = '127.0.0.1'
+PI_IP = '192.168.123.249'
 PI_PORT_SOCKET = 12345
 STREAM_SCRIPT = 'start_stream.sh'
 
@@ -15,11 +15,11 @@ BUFSIZE = 1024
 MAX_CONN = 5
 
 # motor
-mX = 26
-mY = 19
+mX = 20
+mY = 21
 
 # nichrome
-nc = [13, 6, 5, 0, 21, 20, 16, 12]
+nc = [6, 13, 19, 26, 25, 8, 7, 1]
 
 def pulse(degree):
     return 500 + 2000 * degree / 270
