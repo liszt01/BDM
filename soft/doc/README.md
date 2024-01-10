@@ -65,13 +65,12 @@ make
 sudo make install
 ```
 
-pigpio をインストールし、デーモンを自動で起動させる。
+pigpio をインストールし、デーモンを起動させる。
 
 ```bash
 sudo apt update
 sudo apt install pigpio
-sudo systemctl enable pigpiod
-sudo systemctl start pigpiod
+sudo pigpiod -x 0x0FFFFFFF
 ```
 
 参考
