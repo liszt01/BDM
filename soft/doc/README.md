@@ -71,6 +71,7 @@ pigpio をインストールし、デーモンを自動で起動させる。
 sudo apt update
 sudo apt install pigpio
 sudo systemctl enable pigpiod
+sudo systemctl start pigpiod
 ```
 
 参考
@@ -88,6 +89,11 @@ ifconfig
 
 パソコン上で `BDM/soft/web/config.py` の `PI_IP` と、ラズパイ上で `BDM/soft/raspi/main.py` の `PI_IP` を先程取得したラズパイのIPに変更する。
 
+```python
+# 例
+PI_IP = '192.168.0.10'
+```
+
 パソコン上で Web サーバーを立ち上げる。
 
 ```bash
@@ -103,16 +109,3 @@ python3 main.py
 ```
 
 最後にブラウザで `http://{パソコンのIPアドレス}:5000` にアクセスすると、遊べます。
-
-### おまけ: root に pyenv をインストール
-
-```
-sudo su
-curl https://pyenv.run | bash
-echo '
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-' >> ~/.bashrc
-```

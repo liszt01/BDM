@@ -304,3 +304,16 @@ Successfully installed pip-23.0.1 setuptools-65.5.0
      ```
 
 これで、ラズベリーパイで撮影した映像がストリーミングされ、パソコン上でOpenCVを使用して画像処理が行われます。処理結果は`img`にありますので、これを用いてさまざまな処理を追加できます。
+
+### おまけ: root に pyenv をインストール
+
+```
+sudo su
+curl https://pyenv.run | bash
+echo '
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+' >> ~/.bashrc
+```
