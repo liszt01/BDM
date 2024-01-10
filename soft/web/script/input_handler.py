@@ -17,8 +17,8 @@ def enforce_angle_constraints():
 
 def move_motor_relative(dx, dy):
     global angle_x, angle_y
-    angle_x += ANGLE_COEFF * dx
-    angle_y += ANGLE_COEFF * (-dy)
+    angle_x += ANGLE_COEFF * (-dx)
+    angle_y += ANGLE_COEFF * dy
     enforce_angle_constraints()
 
     send_command('MOTOR', 'X', angle_x)

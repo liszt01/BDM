@@ -1,11 +1,16 @@
 ### TODO
 
-- threading.Lock()のテスト
-
 - ネットワーク接続の準備をしておく
+
+- エラー時にも終了時処理がなされるようにする
+
+- 最初にモーターの角度を120, 120にする
 
 - (ストリームの遅延をなくす)
 
+  joystickとかで信号を送るときだけ遅延が発生してる
+  app.pyのリソースが食われて映像を更新できなくなっていそう
+  → opencv のvideocaptureをUDPっぽくできない?
   他のストリーム方法を使う?
   RTSP
   https://dev.classmethod.jp/articles/raspberry-pi-rtsp-server/

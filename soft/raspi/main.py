@@ -15,8 +15,8 @@ BUFSIZE = 1024
 MAX_CONN = 5
 
 # motor
-mX = 20
-mY = 21
+mX = 21
+mY = 20
 
 # nichrome
 nc = [6, 13, 19, 26, 25, 8, 7, 1]
