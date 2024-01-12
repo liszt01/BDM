@@ -2,7 +2,7 @@ from config import ANGLE_COEFF, MIN_ANGLE_X, MAX_ANGLE_X, MIN_ANGLE_Y, MAX_ANGLE
 from script.command_sender import send_command
 
 angle_x = 120
-angle_y = 30
+angle_y = 120
 
 launchable_rockets = [True] * NUM_ROCKETS
 ammo = {

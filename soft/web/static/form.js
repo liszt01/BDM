@@ -1,15 +1,10 @@
-function submitNumbers() {
-    // 入力された数値を取得
-    const number1 = parseFloat(document.getElementById('number1').value);
-    const number2 = parseFloat(document.getElementById('number2').value);
-
-    // Fetch APIを使用して数値をPOST
+function send_form(x, y) {
     fetch('/api/form', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ x: number1, y: number2 })
+        body: JSON.stringify({ x: x, y: y })
     })
         .then(response => response.json())
         .then(data => {
@@ -19,3 +14,13 @@ function submitNumbers() {
             console.error('Error:', error);
         });
 }
+
+function submitNumbers() {
+    // 入力された数値を取得
+    const number1 = parseFloat(document.getElementById('number1').value);
+    const number2 = parseFloat(document.getElementById('number2').value);
+
+    send_form(number1, number2);
+}
+
+window.addEventListener('load', send_form(120, 120));

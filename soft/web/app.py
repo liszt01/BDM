@@ -1,8 +1,9 @@
 from flask import Flask, render_template, Response, redirect, url_for, request, jsonify
 from config import DEBUG_FLASK
-from script.image_processing import VideoCamera, frame_generator
+import script.image_processing as imp
 from script.input_handler import move_motor_relative, set_absolute_angle, launch_rocket, reload
 
+imp.ADVANCED = False
 app = Flask(__name__)
 
 @app.route('/')
@@ -11,9 +12,8 @@ def index():
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(frame_generator(VideoCamera()),
+    return Response(imp.frame_generator(imp.VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-
 
 @app.route('/api/joystick', methods=['POST'])
 def receive_joystick():
@@ -41,5 +41,12 @@ def receive_reload():
     response_data = reload()
     return jsonify(response_data)
 
+@app.route('/api/advanced', methods=['POST'])
+def receive_advanced():
+    imp.ADVANCED = not imp.ADVANCED
+    response_data = {'message': 'Request received successfully!'}
+    print('api', imp.ADVANCED)
+    return jsonify(response_data)
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0')

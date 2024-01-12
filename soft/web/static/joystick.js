@@ -107,6 +107,7 @@ let joystick = new JoystickController("stick1", 64, 8);
 
 function loop() {
     requestAnimationFrame(loop);
+    // setTimeout(loop, 1000 / 10);  // 10FPS。映像の遅延を減らす目的。効果なさそう
     if (joystick.value.x !== 0 || joystick.value.y !== 0) {
         fetch('/api/joystick', {
             method: 'POST',
