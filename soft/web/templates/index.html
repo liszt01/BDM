@@ -20,20 +20,12 @@
 			height: auto;
 		}
 
-		.container-bottom-left {
+		.container-bottom {
 			position: absolute;
 			display: flex;
-			width: 50%;
+			width: 100%;
 			top: 80%;
 			bottom: 0;
-		}
-
-		.container-bottom-right {
-			position: absolute;
-			width: 50%;
-			top: 80%;
-			bottom: 0;
-			right: 0;
 		}
 
 		#ammo {
@@ -64,10 +56,11 @@
 <body>
 	<img src="{{ url_for('video_feed') }}" style="width: auto; height: 100%;">
 
-	<div class="container-bottom-left">
-		<button id="modeSwitch">advanced</button>
+	<div class="container-bottom">
+		<img id="modeSwitch" src="{{ url_for('static', filename='player_button08_plus.png') }}"
+			style="width: 64px; height: 64px;">
 
-		<div style="width: 128px; height: 128px; position: relative;">
+		<div style="width: 128px; height: 128px; position: absolute; left: 20%;">
 			<img src="{{ url_for('static', filename='joystick-base.png') }}" />
 			<div id="stick1" style="width: 50%; height: 50%; position: absolute; top: 25%; left: 25%;">
 				<img src="{{ url_for('static', filename='joystick-blue.png') }}" />
@@ -90,11 +83,10 @@
 			</div>
 		</form>
 		{% endif %}
-	</div>
 
-	<div class="container-bottom-right">
-		<img id="launchButton" src="{{ url_for('static', filename='war_bakuha_switch_off.png') }}">
-		<div id="ammo">8/8</div>
+		<img id="launchButton" src="{{ url_for('static', filename='war_bakuha_switch_off.png') }}"
+			style="width: 128px; height: 128px; position: absolute; left: 70%">
+		<div id="ammo" style="position: absolute; left: 80%;">8/8</div>
 	</div>
 
 	<script src="{{ url_for('static', filename='joystick.js') }}"></script>
