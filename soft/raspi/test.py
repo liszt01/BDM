@@ -6,7 +6,7 @@ import sys
 import threading
 import time
 
-PI_IP = '127.0.0.1'
+PI_IP = '10.42.0.59'
 PI_PORT_SOCKET = 12345
 # STREAM_SCRIPT = 'start_stream.sh'
 
