@@ -2,7 +2,7 @@
 
 - hard/
 
-    担当:
+    担当: Vizeota
 
 - soft/
 

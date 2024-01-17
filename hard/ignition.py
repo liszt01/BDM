@@ -3,17 +3,22 @@ import time
 
 
 def main():
-    i1 = 14
-    i2 = 23
+    pin = [14, 15, 18, 23]
 
     pi = pigpio.pi()
-    pi.set_mode(i1, pigpio.OUTPUT)
-    pi.set_mode(i2, pigpio.OUTPUT)
+    for i in range(4):
+        pi.set_mode(pin[i], pigpio.OUTPUT)
 
-    pi.write(i1, 1)
-    time.sleep(3)
-    pi.write(i1, 0)
-    time.sleep(1)
+    # while True:
+    #     for i in range(2):
+    #         pi.write(pin[i], 1)
+    #         time.sleep(3)
+    #         pi.write(pin[i], 0)
+
+    i = 0
+    pi.write(pin[i], 1)
+    time.sleep(2)
+    pi.write(pin[i], 0)
 
 
 if __name__ == "__main__":
