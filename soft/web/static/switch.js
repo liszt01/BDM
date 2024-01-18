@@ -25,7 +25,7 @@ class ModeSwitchController {
             handleFetch();
         }
 
-        modeSwitch.addEventListener('mousedown', handlePush);
+        // modeSwitch.addEventListener('mousedown', handlePush);
         modeSwitch.addEventListener('touchstart', handlePush);
     }
 }

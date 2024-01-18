@@ -10,7 +10,7 @@ ID = 1
 web_server_url = 'http://localhost:5000/api/joystick'
 
 def send_tracking_data(x, y):
-    value = {'x': x, 'y': y}
+    value = {'x': -x, 'y': -y}
 
     try:
         response = requests.post(web_server_url, json=value, headers={'Content-Type': 'application/json'})
@@ -41,9 +41,13 @@ class VideoCamera(object):
             results = model.track(image, conf=0.6, verbose=False, persist=True)
             # print(results[0].boxes)
             id_list = results[0].boxes.id
-            if id_list is not None and ID in id_list:
-                id_index = int(torch.where(id_list == ID)[0])
+            if id_list is not None:
+                id_index = 0
                 send_tracking_data(float(results[0].boxes.xywhn[id_index][0]), float(results[0].boxes.xywhn[id_index][1]))
+            # id_list = results[0].boxes.id
+            # if id_list is not None and ID in id_list:
+            #     id_index = int(torch.where(id_list == ID)[0])
+            #     send_tracking_data(float(results[0].boxes.xywhn[id_index][0]), float(results[0].boxes.xywhn[id_index][1]))
 
             ret, jpeg = cv2.imencode('.jpg', results[0].plot())
             return jpeg.tobytes()
